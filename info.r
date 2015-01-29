@@ -1,1 +1,5 @@
-fd
+name = "Sung Chan Park"
+SID = "24496738"
+email ="scphafs94@berkeley.edu"
+github_name = "scphafs94"
+status ="enrolled"
