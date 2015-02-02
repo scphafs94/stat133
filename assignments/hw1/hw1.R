@@ -84,7 +84,7 @@ load("family.rda")
 
 ### Check what data type the variable is with : class(family)
 ### now take a look at the data frame by typing family in the console.
-
+class(family)
 # Create a new data frame 
 # << family.men >> : a data frame that is a subset of family, with only the men
 family.men = subset(family, gender == "m", select = c(name, age, height, weight))
