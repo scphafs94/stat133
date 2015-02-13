@@ -60,7 +60,7 @@ load("WR1500MeterMen.rda")
 
 # Q1a. How many world records does this data frame contain?
 
-n.wr <- nrow(wr1500m)
+n.wr <- length(wr1500m$times)
 
 # Q1b. Use R commands to find out who currently holds the world
 # record in the men's 1500 meter.
@@ -151,10 +151,10 @@ text(1998,wr_1998,wr1500m$athlete[51],pos=1,adj=1,col="blue",cex=1)
 # put your final version of the plotting commands below.
 plot(wr1500m$new_year,times_sec,type="s",xlab="year",ylab="records",main="World records",xlim=c(1892,2014))
 lines((1998:2014),wr_1998,)
-abline(v=1944)
-abline(v=1998)
+abline(v=1944, col = "grey")
+abline(v=1998, col = "grey")
 text(1944,wr_1944,wr1500m$athlete[26],pos=1,adj=1,col="blue",cex=1)
-text(1998,wr_1998,wr1500m$athlete[51],pos=1,adj=1,col="blue",cex=1)
+text(1998,wr_1998,wr1500m$athlete[51],pos=4,adj=1,col="blue",cex=1)
 
 ## You have finised the first plot!!
 
@@ -338,18 +338,17 @@ mode(athletes$MoreThan1Sport)
 
 # The table() and sum() functions might be helpful for answering 
 # some of the questions below. 
-
-# How many athletes competed in the 2012 Olympics?
-n.athletes <- nrow(athletes)
-
+n.athletes <-length(athletes$Name)
 # How many women competed?
-w.athletes <- sum(athletes$Sex =="F")
-
+n.women<-sum(athletes$Sex=="F")
 # What proportion of the participants were women?
-frac.women <- w.athletes/n.athletes
+# frac.women <- your code here
+frac.women<-n.women/n.athletes
 
 # How many sports were there?
-n.sports <- nlevels(athletes$Sport)
+# n.sports <- your code here
+n.sports<-length(table(athletes$Sport))
+
 
 
 #Q14. Make a barplot of Sport and Sex that emphasizes the 
@@ -420,3 +419,4 @@ barplot(athTab3,beside=set.beside, width=2, cex.names=.7, main="Olympic Sports, 
 
 # You are DONE.
 # Hope you had fun making increasingly complex and attractive plots with R.
+
