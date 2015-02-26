@@ -15,8 +15,7 @@
 
 listLengths <- function(data.list) {
 
-    # your code here
-
+  return (sapply(data.list, length))
 }
 
 #### Function 2
@@ -31,7 +30,9 @@ listLengths <- function(data.list) {
 #              the column names should be : "x", "x^2", "x^3" etc.
 
 powers <- function(x, k){
-
+  fc <- sapply(1:k, function(n) x^n)
+  colnames(fc) <- c("x", paste("x^", 2:k, sep = ""))   
+  return (fc)
 }
 
  
@@ -64,7 +65,17 @@ powers <- function(x, k){
 
 # Put your code here
 recipeConversion <- function(recipe){
-
+  if (any(colnames(recipe) != c("amount", "unit", "ingredient"))){
+    stop('Column name error')
+  }
+  recipe$amount[unit == "oz"] = 
+    (round(recipe$amount[unit == "oz"]* 28.3/5)) * 5
+  recipe$unit <- sub("oz", "gr", recipe$unit) 
+  recipe$amount[unit == "cups"| unit == "cup"] = 
+    (round(recipe$amount[unit == "cups"| unit == "cup"]* 236.6/5)) * 5  
+  recipe$unit <- sub("cup", "ml", recipe$unit)
+  recipe$unit <- sub("cups", "ml", recipe$unit)
+  return(recipe)
 }
 
 
@@ -90,7 +101,13 @@ recipeConversion <- function(recipe){
 # -- The bootstrap variance is the sample variance of mu_1, mu_2, ..., mu_B
 
 bootstrapVarEst <- function(x, B){
-
+  i <- 0
+  mean_table <- c()
+  while(count < B){
+    i <- i + 1
+    mean_table <- append(means, mean(sample(x, length(x), replace = TRUE)), after = length(mean_table))
+  }
+  return (var(mean_table))
 }
 
 #### Function #4b
@@ -111,8 +128,14 @@ bootstrapVarEst <- function(x, B){
 #     for this reduced sample calculate the sample mean (get mu_1, mu_2, ..., mu_n)
 # -- The jackknife variance is the sample variance of mu_1, mu_2, ..., mu_n
 
-jackknifeVarEst <- fuction(x){
-
+jackknifeVarEst <-fuction(x) {
+  i <- 1
+  mean_table <- c()
+  while(i <= length(x)){
+    mean_table <- append(mean_table, mean(x[-i]), after = length(mean_table))
+    i <- i + 1
+  }
+  return (var(mean_table))
 }
 
 #### Function #4c
@@ -127,8 +150,12 @@ jackknifeVarEst <- fuction(x){
 
 # Note: this function calls the previous two functions.
 
-samplingVarEst <- function(  ){
-
+samplingVarEst <- function(x, type="bootstrap" ){
+  if (type == "bootstrap"){
+    return (bootstrapVarEst(x, 5000))
+  } else if(type == "jackknife"){
+    return (jackknifeVarEst(x))
+  }
 }
 
 
