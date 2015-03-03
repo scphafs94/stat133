@@ -1,0 +1,23 @@
+{
+    "login": "scphafs94", 
+    "url": "git@github.com:scphafs94/stat133.git", 
+    "name": "Sung Chan Park", 
+    "email": "scphafs94@berkeley.edu", 
+    "github_name": "scphafs94", 
+    "status": "enrolled", 
+    "grades": {
+        "hw1": {
+            "note": "", 
+            "hash": "c32e29a217f9bca8ea7d482541c51f64e4591fff", 
+            "earned": 14, 
+            "possible": 20, 
+            "penalty": 0, 
+            "parts": {
+                "hw1": {
+                    "possible": 20, 
+                    "earned": 14
+                }
+            }
+        }
+    }
+}
