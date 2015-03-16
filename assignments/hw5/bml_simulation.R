@@ -70,7 +70,7 @@ bml.step <- function(m){
 bml.sim <- function(r, c, p){
   m <- bml.init(r,c,p)
   i <- 1
-  while (i <= 20000) {
+  while (i <= 1000) {
     i <- i + 1
     output <- bml.step(m)
     x <- output[[1]]
@@ -78,5 +78,56 @@ bml.sim <- function(r, c, p){
     if (y== FALSE) break}
   print(i-1) #"GridLock at this # of steps"
 }
+
+
+1. (plot1)
+table(replicate(1000,bml.sim(10,10,0.25)))
+table(replicate(1000,bml.sim(10,10,0.32)))
+table(replicate(1000,bml.sim(10,10,0.38)))
+table(replicate(1000,bml.sim(10,10,0.39)))
+table(replicate(1000,bml.sim(20,20,0.25)))
+table(replicate(1000,bml.sim(20,20,0.32)))
+table(replicate(1000,bml.sim(20,20,0.38)))
+p032 <- replicate(100,bml.sim(10,10,0.32))
+p045 <- replicate(100,bml.sim(10,10,0.45))
+p052 <- replicate(100,bml.sim(10,10,0.52))
+p065 <- replicate(100,bml.sim(10,10,0.65))
+p074 <- replicate(100,bml.sim(10,10,0.74))
+p085 <- replicate(100,bml.sim(10,10,0.85))
+m.032 <- mean(p032)
+m.045 <- mean(p045)
+m.052 <- mean(p052)
+m.065 <- mean(p065)
+m.075 <- mean(p074)
+m.085 <- mean(p085)
+gg <- c(m.032,m.045,m.052,m.065,m.075,m.085)
+plot(gg, type="b", xlab="p", ylab="average of 100 sample's free owning traffic", 
+     main="The relationship between p and average of 100 sample's free owning traffic",xaxt= 'n')
+axis(side=1, at=1, label="0.32")
+axis(side=1, at=2, label="0.45")
+axis(side=1, at=3, label="0.52")
+axis(side=1, at=4, label="0.65")
+axis(side=1, at=5, label="0.74")
+axis(side=1, at=6, label="0.85")
+assign("last.warning", NULL, envir = baseenv())
+##############################################
+#2 What is max step? (#plo21)
+aa<- sapply(c((1/1000)*(1:1000)), function(x) bml.sim(10,10,x))
+plot(aa, type="l", xlim=c(0,1000), xlab="p" , ylab="max number of step until gridlock", xaxt= 'n', main="relationship between p and max number of step until gridlock")
+axis(side=1, at=0, lable="0")
+axis(side=1, at=200, label="0.2")
+axis(side=1, at=400, label="0.4")
+axis(side=1, at=600, label="0.6")
+axis(side=1, at=800, label="0.8")
+axis(side=1, at=1000, label="1.0")
+assign("last.warning", NULL, envir = baseenv())
+#3
+table(replicate(1000,bml.sim(10,10,0.8)))
+table(replicate(1000,bml.sim(5,20,0.8)))
+table(replicate(1000,bml.sim(4,25,0.8)))
+table(replicate(1000,bml.sim(2,50,0.8)))
+table(replicate(1000,bml.sim(20,20,0.5)))
+table(replicate(1000,bml.sim(10,10,0.5)))
+table(replicate(1000,bml.sim(5,5,0.5)))
 
 

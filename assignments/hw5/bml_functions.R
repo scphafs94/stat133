@@ -50,10 +50,10 @@ east_move <- function(m) {
   
   updated.m <- north_move(east_move(m))
   if (!all(updated.m == m)){
-    grid.new <- T 
+    grid.new <- TRUE
   }
   else{
-    grid.new <- F 
+    grid.new <- FALSE
   }
   return(list(updated.m, grid.new))
 }
@@ -66,7 +66,7 @@ east_move <- function(m) {
 bml.sim <- function(r, c, p){
   m <- bml.init(r,c,p)
     i <- 1
-    while (i <= 20000) {
+    while (i <= 1000) {
         i <- i + 1
         output <- bml.step(m)
         x <- output[[1]]
