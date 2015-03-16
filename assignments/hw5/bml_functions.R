@@ -30,7 +30,7 @@ north_move <- function(m) {
   }
   blocked <- m[c(nrow(m), 1:(nrow(m)-1)),]!=0
   blue_particle <- m*(m==2)
-  blue_particle.new <- blue_particle + blue_particle*blocked + (blue_particle*!blocked)[c(2:nrow(m), 1), ] 
+  blue_particle.new <- m*(m!=2) + blue_particle*blocked + (blue_particle*!blocked)[c(2:nrow(m), 1), ] 
   return(blue_particle.new)
 }
 
@@ -40,7 +40,7 @@ east_move <- function(m) {
   }
   blocked <-  m[, c(2:ncol(m), 1)]!=0
   red_particle <-  m*(m==1)
-  red_particle.new <- red_particle + red_particle*blocked + (red_particle*!blocked)[,c(ncol(m), 1:(ncol(m)-1))] 
+  red_particle.new <- m*(m!=1) + red_particle*blocked + (red_particle*!blocked)[,c(ncol(m), 1:(ncol(m)-1))] 
   return(red_particle.new)
 }
 
@@ -65,13 +65,13 @@ east_move <- function(m) {
 
 bml.sim <- function(r, c, p){
   m <- bml.init(r,c,p)
-    i <- 1
-    while (i <= 1000) {
+    for (i in 1:1000) {
         i <- i + 1
         output <- bml.step(m)
         x <- output[[1]]
         y <- output[[2]]
-      if (y== FALSE) break}
+      if (y== FALSE) 
+        break}
      print(i-1) #"GridLock at this # of steps"
 }
 
