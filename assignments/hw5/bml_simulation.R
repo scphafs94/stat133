@@ -1,7 +1,3 @@
-#################################################################################
-#### Functions for BML Simulation Study
-
-
 #### Initialization function.
 ## Input : size of grid [r and c] and density [p]
 ## Output : A matrix [m] with entries 0 (no cars) 1 (red cars) or 2 (blue cars)
@@ -65,53 +61,53 @@ bml.step <- function(m){
 
 bml.sim <- function(r, c, p){
   m <- bml.init(r,c,p)
-  for (i in 1:1000) {
+  i <- 1
+  while (i <= 100) {
     i <- i + 1
     output <- bml.step(m)
     x <- output[[1]]
     y <- output[[2]]
-    if (y== FALSE) 
-      break}
+    if (y== FALSE) break}
   print(i-1) #"GridLock at this # of steps"
 }
 
 
 #1
-table(replicate(1000,bml.sim(10,10,0.90)))
-table(replicate(1000,bml.sim(10,10,0.92)))
-table(replicate(1000,bml.sim(10,10,0.94)))
-table(replicate(1000,bml.sim(10,10,0.96)))
-table(replicate(1000,bml.sim(20,20,0.92)))
-table(replicate(1000,bml.sim(20,20,0.94)))
-table(replicate(1000,bml.sim(20,20,0.96)))
+table(replicate(1000,bml.sim(10,10,0.26)))
+table(replicate(1000,bml.sim(10,10,0.32)))
+table(replicate(1000,bml.sim(10,10,0.38)))
+table(replicate(1000,bml.sim(10,10,0.39)))
+table(replicate(1000,bml.sim(20,20,0.26)))
+table(replicate(1000,bml.sim(20,20,0.32)))
+table(replicate(1000,bml.sim(20,20,0.38)))
 
-p0.90 <- replicate(100,bml.sim(10,10,0.90))
-p0.92 <- replicate(100,bml.sim(10,10,0.92))
-p0.94 <- replicate(100,bml.sim(10,10,0.94))
-p0.96 <- replicate(100,bml.sim(10,10,0.96))
-p0.98 <- replicate(100,bml.sim(10,10,0.98))
-p1 <- replicate(100,bml.sim(10,10,1))
+p0.36 <- replicate(100,bml.sim(10,10,0.36))
+p0.45 <- replicate(100,bml.sim(10,10,0.45))
+p0.54 <- replicate(100,bml.sim(10,10,0.54))
+p0.63 <- replicate(100,bml.sim(10,10,0.63))
+p0.72 <- replicate(100,bml.sim(10,10,0.72))
+p0.81 <- replicate(100,bml.sim(10,10,0.81))
 
-mean0.90 <- mean(p0.90)
-mean0.92 <- mean(p0.92)
-mean0.94 <- mean(p0.94)
-mean0.96 <- mean(p0.96)
-mean0.98 <- mean(p0.98)
-mean1 <- mean(p1)
+mean0.36 <- mean(p0.36)
+mean0.45 <- mean(p0.45)
+mean0.54 <- mean(p0.54)
+mean0.63 <- mean(p0.63)
+mean0.72 <- mean(p0.72)
+mean0.81 <- mean(p0.81)
 gg <- c(mean0.36,mean0.45,mean0.54,mean0.63,mean0.72,mean0.81)
 plot(gg, type="b", xlab="density", ylab="mean of 100 free flowing traffic sample", 
      main="Relationship between p and mean of 100 free lowing traffic sample",xaxt= 'n')
-axis(side=1, at=1, label="0.90")
-axis(side=1, at=2, label="0.92")
-axis(side=1, at=3, label="0.94")
-axis(side=1, at=4, label="0.96")
-axis(side=1, at=5, label="0.98")
-axis(side=1, at=6, label="1")
+axis(side=1, at=1, label="0.36")
+axis(side=1, at=2, label="0.45")
+axis(side=1, at=3, label="0.54")
+axis(side=1, at=4, label="0.63")
+axis(side=1, at=5, label="0.72")
+axis(side=1, at=6, label="0.81")
 assign("last.warning", NULL, envir = baseenv())
 
 #2 
 aa<- sapply(c((1/1000)*(1:1000)), function(x) bml.sim(10,10,x))
-plot(aa, type="l", xlim=c(0,1000), xlab="p" , ylab="max number of step until gridlock", xaxt= 'n', main="relationship between p and max number of step until gridlock")
+plot(aa, type="l", xlim=c(0,100), xlab="p" , ylab="max number of step until gridlock", xaxt= 'n', main="relationship between p and max number of step until gridlock")
 axis(side=1, at=0, label="0")
 axis(side=1, at=200, label="0.2")
 axis(side=1, at=400, label="0.4")
@@ -121,12 +117,12 @@ axis(side=1, at=1000, label="1.0")
 assign("last.warning", NULL, envir = baseenv())
 
 #3
-table(replicate(1000,bml.sim(10,10,0.98)))
-table(replicate(1000,bml.sim(5,20,0.98)))
-table(replicate(1000,bml.sim(4,25,0.98)))
-table(replicate(1000,bml.sim(2,50,0.98)))
-table(replicate(1000,bml.sim(20,20,0.96)))
-table(replicate(1000,bml.sim(10,10,0.96)))
-table(replicate(1000,bml.sim(5,5,0.96)))
+table(replicate(1000,bml.sim(10,10,0.8)))
+table(replicate(1000,bml.sim(5,20,0.8)))
+table(replicate(1000,bml.sim(4,25,0.8)))
+table(replicate(1000,bml.sim(2,50,0.8)))
+table(replicate(1000,bml.sim(20,20,0.5)))
+table(replicate(1000,bml.sim(10,10,0.5)))
+table(replicate(1000,bml.sim(5,5,0.5)))
 
 
