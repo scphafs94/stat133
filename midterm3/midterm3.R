@@ -8,7 +8,12 @@
 # and return the following
 #   <num.brac>: an integer indicating how many elements of <chvec> contain the "["
 #     symbol. For example: numBracElements(c('digit', '[:digit:]', '[]')) should return 2
-
+numBracElements <- function(chvec){
+  num.brac <- 0
+  ind.brac <- gregexpr("[", chvec)[[1]]
+  if(ind.brac[1] != -1) num.brac <- length(ind.brac)
+  return(num.brac)
+}
 
 
 
@@ -19,7 +24,12 @@
 #
 # and return the following
 #   <total>: A single number (the maximum of all digits in chvec)
-
+maxDigit <- function(chvec){
+  chvec.digit <-gsub("[^0-9]","",chvec)
+  chvec.digit.num<- as.vector(chvec.digit)
+  total <- max(chvec.digit.num)
+  return(total)
+}
 
 
 # Some test cases:
@@ -37,6 +47,12 @@ all.equal(maxDigits("abcdefg"), 0)
 #
 # and return
 #   <herchvec>: The same character vector with the required substitutions.
+hisToHer <- function(chvec){
+  herchvec3 <- gsub("\\<him\\>","her",chvec)
+  herchvec2 <- gsub("\\<his\\>","her",chvec3)
+  herchvec  <- gsub("\\<he\\>","she",chvec2)
+  return(herchvec)
+}
 
 
 # A test case
@@ -44,6 +60,7 @@ all.equal(
   hisToHer("he went to the store his mother gave him"), 
   "she went to the store her mother gave her"
 )
+
 
 
 # Write a function called mostCommonLetter that finds the most common 
@@ -58,4 +75,12 @@ all.equal(
 #  <letter> The most common letter or letters in the string.
 # For example mostCommonLetter("aabbccccdddd") should return 
 # [1] "c" "d"
+
+mostCommonLetter <- function(chvec){
+  tolower(chvec)
+  letter.only <- gsub("[^a-z]","",chvec)
+  common.letter<- max(gregexpr("[a-z]",letter.only)[[1]])
+  letter<- letter.only[common.letter]
+  return(letter)
+}
 
