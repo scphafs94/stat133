@@ -56,7 +56,9 @@ even <- paste("even", seq(2, 2000, by=2), sep="")
 
 hotelCal <- "On a dark desert highway, cool wind in my hair. Warm smell of colitas, rising up through the air. Up ahead in the distance, I saw a shimmering light. My head grew heavy and my sight grew dim I had to stop for the night.  There she stood in the doorway; I heard the mission bell.  And I was thinking to myself: 'This could be heaven or this could be hell'. Then she lit up a candle and she showed me the way."
 
-hotelCal.split <-unlist(strsplit(tolower(hotelCal),""))
+hotelCal.split <-tolower(hotelCal)
+hotelCal.split <- gsub("[[;punct:]]","",hotelCal.split)
+hotelCal.split <- unlist(strsplit(hotelCal.split," "))
 
 
 
