@@ -1,0 +1,20 @@
+Total: 13/20
+
+Function 1
+3/5
+Consider “\\[“ in place o “[“. With this change the function counts
+the number of “[“s in the first element of chvec, but the question
+asks for the number of elements in chvec with at least one “[“
+
+Function 2
+3/5
+Consider replacing line 29 with
+  chvec.digit.num<- as.numeric(unlist(strsplit(chvec.digit, “”))
+
+
+Function 3
+5/5
+
+Function 4
+2/5
+One approach is to use table(strsplit(chvec) to get to the values with maximum.
