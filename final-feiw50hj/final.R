@@ -125,7 +125,7 @@ cw3 <- mean(ChickWeight$weight[ChickWeight$Time == 0])
 
 # [1 pt]
 # Create [cw4] a random subset of 200 ChickWeight observations (any 200)
-cw4 <- ChickWeight[sample((1:578), 200, replace = F)]
+#cw4 <- ChickWeight[sample((1:578), 200, replace = F)]
   
 
 # for the next two tasks you will use the data frame infants (size 1236x15)
@@ -136,7 +136,7 @@ load("KaiserBabies.rda")
 # Create a table [t1] of the smoking history of the mothers using the variables
 # [smoke] for the rows of the table and  [number] for the columns.
 # 
-t1 <- table(infants$smoke, intants$number)
+t1 <- table(infants$smoke, infants$number) #andy
 
 # [1 pt] 
 # Now create a table [t2] which is the same table as before except restricted
@@ -228,12 +228,12 @@ max.rain <- sapply(rain,max)
 # __maximum absolute difference__ in rainfall on two consecutive days
 # Hint: you can use the function [diff()] to get the difference between entry i and i+1 in a vector 
 # and the function [abs()] for absolute value
-max.diff.rain <- sapply(rain, function(x)  for(i in 1:5) max(abs(diff(x[[i]]))
+max.diff.rain <- sapply(rain, function(x)  for(i in 1:5) max(abs(diff(x[[i]])))) #andy
 # [5 pts]
 # Create [prop.rain], a vector of length 5 where each entry is the 
 # number of rain days (i.e. rain > 0) as a function of total days
 
-prop.rain <- sapply(rain, function(x)  for(i in 1:5) length( x[[i]] > 1)
+prop.rain <- sapply(rain, function(x)  for(i in 1:5) length( x[[i]] > 1)) #andy
   
 
 # [3 pts]
@@ -258,7 +258,7 @@ par(mfrow=c(2,3))
 #   a vector of n normal random variables with mean=mean and sd=sd
 #   an optional plot
 
-function <- GenNorm(mean, sd n, plot.hist){
+GenNorm <- function(mean, sd, n, plot.hist){
  tmp<-  rnorm(n,mean =mean, sd= sd)
  if (plot.hist == T) {
    plot(tmp)
@@ -281,7 +281,7 @@ return(tmp)
 standardizeVar <- function(m, cols=TRUE){
   if(cols == TRUE)  for ( i in 1: ncol(m)) (m[,i]-mean(m[,i]))/sd(m[,i])
     else{ for (i in 1 :nrow(m))  (m[i,]-mean(m[i,]))/sd(m[i,])
-}
+}}#andy
 
 
 # [8 pts]
@@ -344,12 +344,12 @@ set.seed(123456)
 #    generate a ticket for each player in turn, if they had the winning numbers 
 #    increase the counter by 1
 
-function <- NumJackpot(k, B){
+NumJackpot <- function(k, B){
 
 n.winners<- 0
 for (i in i:B){
 winning.numbers <- sample(1:19, 3, replace = F)
-n.jackpot<- sum(replicate(k, smaple(1:19, 3, replace = F)== winning.numbers)
+n.jackpot<- sum(replicate(k, sample(1:19, 3, replace = F)== winning.numbers))#andy
 }                     
 return(n.jackpot)
 }
@@ -358,7 +358,7 @@ return(n.jackpot)
 # Plot a histogram of the output from NumJackpot (i.e. four histograms)
 
 for(i in 1:4){
-  tmp <- NumJackpot(k=i, B=10])
+  tmp <- NumJackpot(k=i, B=10) #andy
   hist(tmp, xlab="number of winners", main=paste("Histogram for k=", i))
 }
 
@@ -370,12 +370,12 @@ phrases <- c("stone", "steel", "sled", "Star", "silly", "cat", "dog", "catcat", 
 # [2 pts]
 # Create a vector [text1] that lists the elements in phrases that start
 # with "st" (case doesn't matter)
-text1 <-grep("^st.+, phrases)
+text1 <-grep("^st.+", phrases) #andy
   
   
 # [1 pt]
 # Create a vector [text2] that lists the elements in phrases that have 
-# a match to "ar", _at the end of the phrase_ 
+#a match to "ar", _at the end of the phrase_ 
 text2 <- grep("ar\\>", phrases)
 
 # [2 pts]
