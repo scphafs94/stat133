@@ -40,7 +40,7 @@ text1 <- grep("^.*o.$",phrases)
 text2 <- grep("^d.*",phrases)
 
 # Create a variable [no.punct] that equals the number of phrases with a punctuation mark in it.
- no.punct <-length(grep("\\.*[[:punct:]].*\\", phrases))
+# no.punct <-length(grep("\\.*[[:punct:]].*\\", phrases))
 
 # Create a vector [even] that is of length 1000 and has the entries
 # "even2", "even4", ...
